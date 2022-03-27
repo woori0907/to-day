@@ -57,6 +57,11 @@ body{
     height: 100vh;
 }
 
+.is-checked{
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
 .schedule-clock{
     font-size: var(--font-clock);
     font-weight: var(--weight-bold);
