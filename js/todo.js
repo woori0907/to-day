@@ -22,7 +22,7 @@ const paintTodoItem = (todoText) => {
 }
 
 const saveTodoItem = () => {
-    
+    localStorage.setItem('item', todoArr);
 }
 
 const addTodoItem = (event) => {
@@ -31,6 +31,7 @@ const addTodoItem = (event) => {
     if(newTodo){
         todoArr.push(newTodo);
         paintTodoItem(newTodo);
+        saveTodoItem();
         todoInput.value = '';
     }
 }
@@ -45,10 +46,25 @@ const checkTodoItem = (event) => {
     }
 }
 
+
 const deleteTotoItem = (event) =>{
-    const newTodo = todoArr.filter((item) => item == event.target.parentNode.textContent);
+    const newTodo = todoArr.filter((item) => item !== event.target.parentNode.textContent);
     todoArr = newTodo;
+    todoArr.forEach(item => console.log(item));
+
+    saveTodoItem();
     event.target.parentNode.remove();
 }
+
+window.addEventListener('load', ()=>{
+    const loadedTodoItem = localStorage.getItem('item');
+    const obj = loadedTodoItem.split(',');
+    todoArr = obj;
+    if(obj){
+        obj.forEach(item => {
+            paintTodoItem(item);
+        });
+    }
+});
 
 todoInputForm.addEventListener('submit', addTodoItem);
