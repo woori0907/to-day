@@ -69,6 +69,7 @@ body{
 .schedule-clock{
     font-size: var(--font-clock);
     font-weight: var(--weight-bold);
+    margin-top: auto;
 }
 
 .schedule-message{
@@ -78,6 +79,10 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.schedule-todo{
+    height: 30%;
 }
 
 .message-input, .todo-input{
@@ -144,7 +149,14 @@ body{
     .message-input, .todo-input{
         font-size: var(--font-medium);
     }
+    .list-item span{
+        font-size: var(--font-regular);
+        margin: 0 0.6em;
+    }
     .message-input::placeholder, .todo-input::placeholder{
         font-size: var(--font-regular);
+    }
+    .main-quote{
+        font-size: var(--font-micro);
     }
 }
