@@ -1,5 +1,4 @@
-const messageInput = document.querySelector('.schedule-message-input');
-const todoInput = document.querySelector('.schedule-todo-input');
+const todoInput = document.querySelector('.todo-input');
 const todoInputForm = document.querySelector('.todo-form');
 const todoList = document.querySelector('.todo-list');
 
@@ -22,12 +21,18 @@ const paintTodoItem = (todoText) => {
     checkBox.addEventListener("click", checkTodoItem);
 }
 
+const saveTodoItem = () => {
+    
+}
+
 const addTodoItem = (event) => {
     event.preventDefault();
     const newTodo = event.target[0].value;
-    todoArr.push(newTodo);
-    paintTodoItem(newTodo);
-    todoInput.value = '';
+    if(newTodo){
+        todoArr.push(newTodo);
+        paintTodoItem(newTodo);
+        todoInput.value = '';
+    }
 }
 
 const checkTodoItem = (event) => {
