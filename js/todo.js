@@ -46,7 +46,6 @@ const checkTodoItem = (event) => {
     }
 }
 
-
 const deleteTotoItem = (event) =>{
     const newTodo = todoArr.filter((item) => item !== event.target.parentNode.textContent);
     todoArr = newTodo;
@@ -58,13 +57,25 @@ const deleteTotoItem = (event) =>{
 
 window.addEventListener('load', ()=>{
     const loadedTodoItem = localStorage.getItem('item');
+    const savedDay = localStorage.getItem('today');
+    const date = new Date();
+    const currentDay = date.getDay();
     const obj = loadedTodoItem.split(',');
-    todoArr = obj;
-    if(obj){
+    if(obj && savedDay == currentDay){
+        todoArr = obj;
         obj.forEach(item => {
             paintTodoItem(item);
         });
     }
+    else if(obj&&savedDay != currentDay){
+        localStorage.clear();
+    }
+});
+
+window.addEventListener('beforeunload', ()=>{
+    const date = new Date();
+    const currentDay = date.getDay();
+    localStorage.setItem('today', currentDay);
 });
 
 todoInputForm.addEventListener('submit', addTodoItem);
